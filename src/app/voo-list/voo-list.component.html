@@ -1,0 +1,5 @@
+<button (click)="toggleCadastrar()" *ngIf="!cadastrar">Cadastrar</button>
+
+<div *ngIf="cadastrar">
+  <app-cadastrar-voo (feedback)=feedback($event)></app-cadastrar-voo>
+</div>

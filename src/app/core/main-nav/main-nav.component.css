@@ -1,0 +1,35 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+  border: 0;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.label {
+  font-size: 75%
+}
+
+mat-icon {
+  font-size: 200%;
+  margin-right: 10%;
+  margin-bottom: 5%;
+}
+
+.home-button {
+  font-size: 100%;
+  margin-top: 1%;
+  margin-left: -5%
+}
+
+.menu-icon {
+  margin-left: -5%;
+  margin-top: 2%;
+}

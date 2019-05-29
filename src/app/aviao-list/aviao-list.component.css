@@ -1,0 +1,33 @@
+mat-table{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.paginator {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.panel-heading {
+    text-align: center
+}
+
+mat-header-cell {
+    display:center;
+    justify-content:center;
+}
+mat-cell {
+    display:center;
+    justify-content:center;
+}
+.botao-custom{
+    margin-bottom: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+mat-form-field {
+    width: 300px;
+}
+.icon{
+    color:blue; 
+}
