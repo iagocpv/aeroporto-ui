@@ -1,3 +1,6 @@
-mat-form-field.mat-form-field {
-    font-size: 15px;
+.mat-form-field {
+    font-size: 90%;
+}
+.mat-button {
+    margin-bottom: 2%;
 }

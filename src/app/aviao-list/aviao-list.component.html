@@ -1,67 +1,48 @@
-<button mat-mini-fab color=accent (click)="toggleCadastrar()" *ngIf="!cadastrar">+</button>
-
-<div *ngIf="cadastrar">
-  <app-cadastrar-aviao (feedback)=feedback($event)></app-cadastrar-aviao>
-</div>
-<br>
-
-<div titulo="" class="panel panel-default">
-  <div class="panel-heading">
-      <h1>Aviões</h1>
+<h2>Aviões</h2>
+<div *ngIf="logged" class="add-search" fxLayout="row" fxLayoutAlign="space-between center">
+  <button *ngIf="!cadastrar" mat-button color=primary (click)="toggleCadastrar()">+</button>
+  <div *ngIf="cadastrar">
+    <app-cadastrar-aviao (feedback)=feedback($event)></app-cadastrar-aviao>
   </div>
-<div *ngIf="logged" fxLayout="row" fxLayoutAlign="center center">
-  <button class="botao-custom" mat-raised-button color=primary [routerLink]="[ '/avioes/cadastrar' ]">ADICIONAR</button>
-  <button class="botao-custom" mat-raised-button color=primary (click)="toggleBuscar()">BUSCAR</button>
-  
-  <div *ngIf="showBuscar" fxLayoutAlign="center center">      
-    <mat-form-field appearance="outline" class="center">
-       <input matInput> 
+  <form fxLayoutAlign="end center" fxLayout="row">      
+    <mat-form-field class="searchbox" appearance="outline">
+      <mat-label for="modelo">Pesquisar</mat-label>
+      <input matInput>        
     </mat-form-field>
-    <button mat-icon-button color=primary>
+    <button class="botao" type="submit" mat-button color=primary>
       <mat-icon>search</mat-icon>
-    </button>       
-  </div> 
-</div>
-  <div class="panel-body">	
-
-      <mat-table class="avioes-table mat-elevation-z2" [dataSource]="avioes">            
-
-        <ng-container matColumnDef="aviaoId">
-            <mat-header-cell *matHeaderCellDef>Nº</mat-header-cell>
-            <mat-cell *matCellDef="let aviao">{{aviao.id}}</mat-cell>
-        </ng-container>    
-        <ng-container matColumnDef="modelo">
-            <mat-header-cell *matHeaderCellDef>Modelo</mat-header-cell>
-            <mat-cell *matCellDef="let aviao">{{aviao.modelo}}</mat-cell>
-        </ng-container>        
-        <ng-container matColumnDef="marca">
-            <mat-header-cell *matHeaderCellDef>Marca</mat-header-cell>
-            <mat-cell *matCellDef="let aviao">{{aviao.marca}}</mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="status">
-            <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-            <mat-cell *matCellDef="let aviao">{{aviao.status}}</mat-cell>
-        </ng-container>     
-        <ng-container matColumnDef="acoes">
-          <mat-header-cell  *matHeaderCellDef>Ações</mat-header-cell>
-          <mat-cell *matCellDef="let aviao" >
-               <button mat-button color=warn [routerLink]="['/avioes/editar/', aviao.id]">
-                 <mat-icon>edit</mat-icon>
-               </button>
-               <button mat-button color=accent (click)="onDelete(aviao.id)">
-                 <mat-icon>delete</mat-icon>
-               </button>
-          </mat-cell>
-        </ng-container>
-            
-        <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>          
-        <mat-row *matRowDef="let row; columns: tableColumns"></mat-row> 
-        
-      </mat-table>  
-      <div fxLayout="row"  fxLayoutAlign="center">
-        <mat-paginator class="paginator mat-elevation-z2" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>   
-      </div>
-      
-  
-  </div>
-</div>
+    </button>      
+  </form> 
+</div>   
+<mat-table class="avioes-table mat-elevation-z2" [dataSource]="avioes">
+  <ng-container matColumnDef="aviaoId">
+    <mat-header-cell *matHeaderCellDef>Nº</mat-header-cell>
+    <mat-cell *matCellDef="let aviao">{{aviao.id}}</mat-cell>
+  </ng-container>    
+  <ng-container matColumnDef="modelo">
+    <mat-header-cell *matHeaderCellDef>Modelo</mat-header-cell>
+    <mat-cell *matCellDef="let aviao">{{aviao.modelo}}</mat-cell>
+  </ng-container>        
+  <ng-container matColumnDef="marca">
+    <mat-header-cell *matHeaderCellDef>Marca</mat-header-cell>
+    <mat-cell *matCellDef="let aviao">{{aviao.marca}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+    <mat-cell *matCellDef="let aviao">{{aviao.status}}</mat-cell>
+  </ng-container>     
+  <ng-container matColumnDef="acoes">
+    <mat-header-cell  *matHeaderCellDef>Ações</mat-header-cell>
+    <mat-cell *matCellDef="let aviao" >
+      <button mat-button color=warn [routerLink]="['/avioes/editar/', aviao.id]">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-button color=accent (click)="onDelete(aviao.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>            
+  <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>          
+  <mat-row *matRowDef="let row; columns: tableColumns"></mat-row>         
+</mat-table>  
+<mat-paginator class="paginator mat-elevation-z2" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>   

@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { Router } from '@angular/router';
 import { VooService } from '../voo/voo.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -14,7 +15,8 @@ export class CadastrarVooComponent implements OnInit {
 
   @Output() feedback = new EventEmitter();
 
-  cadastrando = true;
+  subscription = new Subscription()
+  cadastrando = true
 
   vooForm: FormGroup;
   
@@ -22,7 +24,6 @@ export class CadastrarVooComponent implements OnInit {
      private router: Router)  { }
 
   ngOnInit() {
-
     this.vooForm = this.fb.group({
       destino: [null],
       partida: [null],
@@ -30,9 +31,15 @@ export class CadastrarVooComponent implements OnInit {
     }) 
   }
   onSubmit(){
-   // this.vooService.addVoo(this.vooForm.value).subscribe();
-   this.cadastrando = false;
-   this.feedback.emit(this.cadastrando);
+    this.subscription.add(
+      this.vooService.addVoo(this.vooForm.value).subscribe( () => {
+        this.cadastrando = false
+        this.feedback.emit(this.cadastrando);
+      })
+    )   
   };
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
+  }
 
 }

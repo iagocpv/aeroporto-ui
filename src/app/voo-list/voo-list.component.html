@@ -1,5 +1,41 @@
-<button (click)="toggleCadastrar()" *ngIf="!cadastrar">Cadastrar</button>
+<h2>Vôos</h2>
+<div *ngIf="logged" class="add-search" fxLayout="row" fxLayoutAlign="space-between center">
+  <button *ngIf="!cadastrar" mat-button color=primary (click)="toggleCadastrar()">+</button>
+  <div *ngIf="cadastrar">
+      <app-cadastrar-voo (feedback)=feedback($event)></app-cadastrar-voo>
+  </div>
+  <form fxLayoutAlign="end center" fxLayout="row">      
+    <mat-form-field class="searchbox" appearance="outline">
+      <mat-label>Pesquisar</mat-label>
+      <input matInput>        
+    </mat-form-field>
+    <button class="botao" type="submit" mat-button color=primary>
+      <mat-icon>search</mat-icon>
+    </button>      
+  </form> 
+</div>   
+<mat-table class="voos-table mat-elevation-z8" [dataSource]="voos">           
 
-<div *ngIf="cadastrar">
-  <app-cadastrar-voo (feedback)=feedback($event)></app-cadastrar-voo>
-</div>
+    <ng-container matColumnDef="vooId">
+        <mat-header-cell *matHeaderCellDef>Vôo</mat-header-cell>
+        <mat-cell *matCellDef="let voo">{{voo.id}}</mat-cell>
+    </ng-container>        
+
+    <ng-container matColumnDef="destino">
+        <mat-header-cell *matHeaderCellDef>Destino</mat-header-cell>
+        <mat-cell  *matCellDef="let voo">{{voo.destino}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="partida">
+        <mat-header-cell *matHeaderCellDef>Partida</mat-header-cell>
+        <mat-cell  *matCellDef="let voo">{{voo.partida}}</mat-cell>
+    </ng-container>          
+    <ng-container matColumnDef="chegada">
+        <mat-header-cell *matHeaderCellDef>Chegada</mat-header-cell>
+        <mat-cell type="time"  *matCellDef="let voo">{{voo.chegada}}</mat-cell>
+    </ng-container> 
+
+    <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>          
+    <mat-row *matRowDef="let row; columns: tableColumns"></mat-row> 
+
+  </mat-table>
+

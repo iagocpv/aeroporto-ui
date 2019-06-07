@@ -1,0 +1,35 @@
+mat-table{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.paginator {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.add-search, .cadastrar {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+mat-header-cell {
+    display:center;
+    justify-content:center;
+}
+mat-cell {
+    display:center;
+    justify-content:center;
+}
+mat-form-field {
+    width: 300%;
+}
+.searchbox{
+    font-size: 90%;
+}
+.botao {
+    margin-bottom: 5.5%;
+}
+h2 {
+    text-align: center;
+    color: #1a237e
+}

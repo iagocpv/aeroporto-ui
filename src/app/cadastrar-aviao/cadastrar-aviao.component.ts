@@ -1,10 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { AviaoService } from '../aviao/aviao.service';
-
-
 
 @Component({
   selector: 'app-cadastrar-aviao',
@@ -16,9 +14,8 @@ export class CadastrarAviaoComponent implements OnInit {
 
   @Output() feedback = new EventEmitter();
 
-  cadastrando = true;
-
   aviaoForm: FormGroup;  
+  cadastrando = true
   subscription = new Subscription();
 
   constructor(private aviaoService: AviaoService, private fb: FormBuilder,
@@ -32,9 +29,10 @@ export class CadastrarAviaoComponent implements OnInit {
     })    
   }
   onSubmit(){
-  //  this.subscription.add(this.aviaoService.addAviao(this.aviaoForm.value).subscribe());
-   this.cadastrando = false;
-   this.feedback.emit(this.cadastrando);
+    this.subscription.add(this.aviaoService.addAviao(this.aviaoForm.value).subscribe( () => {
+      this.cadastrando = false
+      this.feedback.emit(this.cadastrando);
+    }));
   };
   onDestroy(){
     this.subscription.unsubscribe();

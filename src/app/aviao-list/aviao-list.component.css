@@ -8,10 +8,10 @@ mat-table{
     margin-left: 5%;
     margin-right: 5%;
 }
-.panel-heading {
-    text-align: center
+.add-search, .cadastrar {
+    margin-left: 5%;
+    margin-right: 5%;
 }
-
 mat-header-cell {
     display:center;
     justify-content:center;
@@ -20,14 +20,16 @@ mat-cell {
     display:center;
     justify-content:center;
 }
-.botao-custom{
-    margin-bottom: 1%;
-    margin-left: 5%;
-    margin-right: 5%;
-}
 mat-form-field {
-    width: 300px;
+    width: 300%;
 }
-.icon{
-    color:blue; 
+.searchbox{
+    font-size: 90%;
+}
+.botao {
+    margin-bottom: 5.5%;
+}
+h2 {
+    text-align: center;
+    color: #1a237e
 }
